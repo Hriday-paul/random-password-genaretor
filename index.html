@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random password</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        .main{
+            width: 65%;
+            margin: 0 auto;
+            padding: 35px;
+            border-radius: 5px;
+            border: 2px solid skyblue;
+            box-shadow: 2px 5px 10px rgb(179, 178, 178);
+        }
+        h3{
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 18px;
+            color: rgb(26, 212, 188);
+            text-shadow: 1px 1px 1px rgb(8, 90, 76);
+        }
+        
+        #code{
+            margin: 30px 0 10px 0;
+            text-align: center;
+        }
+        #code p{
+            border: 1px solid rgb(86, 143, 230);
+            padding: 20px 10px;
+            border-radius: 5px;
+            height: auto;
+            text-align: center;
+        }
+        #rng{
+            font-size: 15px;
+            border: none;
+            outline: none;
+            width: 40%;
+        }
+        #rng:-webkit-autofill {
+            -webkit-background-clip: text;
+        }
+        .main #btn{
+            margin-top: 20px;
+            padding: 10px;
+            background-color: rgb(56, 179, 228);
+            font-size: 13px;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        #btn:hover{
+            background-color: rgb(16, 147, 199);
+        }
+        @media only screen and (min-width: 710px){
+            .main{
+                width: 45%;
+            }
+            h3{
+                font-size: 22px;
+                text-shadow: 1px 2px 2px rgb(8, 90, 76);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <h3>Random Password Genaretor</h3>
+        <label for="rng">Set Password Range : 
+            <input id="rng" type="text" placeholder="heighest 25" required autofocus>
+        </label>
+        
+        <div id="code">
+            <p></p>
+            <button type="submit" id="btn">Get Password</button>
+        </div> 
+    </div>
+    
+    <script>
+  
+        code.querySelector("#btn").addEventListener("click", caller)
+
+        //function
+        function caller(){
+            let range = document.getElementById("rng").value;
+            const str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ@#$&-+*/()!~";
+            const ary = Array.from(str);
+            var random = Math.floor(Math.random()*64);
+            var password = "";
+
+
+            if (range==" "|| range==0){
+                alert("Please Set Password Range")
+            }else if(range>25){
+                alert("Sorry, Please Set Password Range Out of 25");
+            }
+            else{
+                for(var i = 0; i<parseInt(range);i++){
+                    password+=ary[random];
+                    random = Math.floor(Math.random()*64);
+                }
+            }
+
+            let code = document.getElementById("code");//parentdiv
+            let txt = code.querySelector("p");
+            txt.textContent=password;
+
+            range.value=""
+        }
+
+
+    </script>
+</body>
+</html>
